@@ -1,0 +1,177 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            background-color: rgb(35, 30, 30);
+        }
+        #time{
+            font-size: 35px;
+            color: white;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            text-shadow: 1px 1px 15px rgb(255, 255, 255);
+            letter-spacing: 1.5px;
+        }
+        #clock{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 80px;
+            padding: 10px 20px 0px 20px;
+        }
+        #date{
+            color: white;
+            font-size: 30px;
+            margin: 30px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            letter-spacing: 1.5px;
+            text-shadow: 1px 1px 15px rgb(255, 255, 255);
+        }
+        .digital{
+            text-align: center;
+            background-color: rgb(133, 133, 255);
+            padding-bottom: 25px;
+            border-radius: 10px;
+        }
+        #message{
+            color: white;
+            text-align: center;
+            font-size: 25px;
+            margin-top: 15px;
+            letter-spacing: 1.5px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            text-shadow: 1px 1px 15px rgb(255, 255, 255);
+        }
+
+
+
+        @media screen and (max-width:540px) {
+            #time{
+                font-size: 20px;
+            }
+            #date{
+                font-size: 20px;
+            }
+            #message{
+                font-size: 17px;
+            }
+            #clock{
+                height: 50px;
+            }
+            .digital{
+                padding-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="digital">
+            <div id="clock">
+                <p id="time"></p>
+            </div>
+            <p id="date"></p>
+        </div>
+        <p id="message"></p>
+
+    </div>
+
+
+    <!-- JavaScript -->
+
+    <script>
+        setInterval(()=>{
+            let time = new Date()
+
+            let hour = time.getHours()
+
+            let min = time.getMinutes()
+
+            let sec = time.getSeconds()
+
+            let milli = time.getMilliseconds()
+
+            let day = time.getDay()
+
+            let date = time.getDate()
+
+            let month = time.getMonth()
+
+            let year = time.getFullYear()
+
+            let hour1,min1,sec1,milli1;
+
+
+
+            if(hour<12){
+                document.getElementById("message").innerHTML = "Good Morning Satyanarayana!"
+            }
+            else if(hour>=12 && hour<21){
+                document.getElementById("message").innerHTML = "Good Evening Satyanarayana!"
+            }
+            else if(hour>=21){
+                document.getElementById("message").innerHTML = "Good Night Satyanarayana!"
+            }
+
+
+
+            if(hour>12){
+                hour1 = hour-12
+                if(hour1<10){
+                    hour1 = '0'+hour1
+                }
+                else{
+                    hour1 = hour1
+                }
+            }
+            else{
+                hour1 = hour1
+            }
+            if(min<10){
+                min1 = '0'+min
+            }
+            else{
+                min1 = min
+            }
+            if(sec<10){
+                sec1 = '0'+sec
+            }
+            else{
+                sec1 = sec
+            }
+            if(milli<10){
+                milli1 = '00'+milli
+            }
+            else if(milli<100){
+                milli1 = '0'+milli
+            }
+            else{
+                milli1 = milli
+            }
+
+
+            let months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
+
+            let days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
+
+            document.getElementById('time').innerHTML = `${hour1}h : ${min1}m : ${sec1}s : ${milli1}ms`
+            document.getElementById('date').innerHTML = `${days[day]} / ${date} / ${months[month]} /  ${year}`
+
+
+        })
+
+    </script>
+</body>
+</html>
